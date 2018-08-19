@@ -143,10 +143,7 @@ namespace UTJ
                 var subSystem = playerLoop.subSystemList[i];
 
                 newSystems.Clear();
-                // skip Initialization / EarlyUpdate 
-                // Initialilzation.PlayerUpdateTime - WaitForTargetFPS ( win editor)
-                // EaryUpdate - (android -notmultithreaded)
-                if (i == 2)
+                if (i == 0)
                 {
                     newSystems.Add(new PlayerLoopSystem
                     {
