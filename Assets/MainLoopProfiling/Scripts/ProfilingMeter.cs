@@ -10,11 +10,11 @@ public class ProfilingMeter : MonoBehaviour {
     private float[] parameters;
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
         meterLength = meters.Length;
         parameters = new float[meterLength];
     }
-    private void Update()
+    void Update()
     {
         float sum = 0.0f;
         for(int i = 0; i < meterLength; ++i)

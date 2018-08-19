@@ -17,6 +17,7 @@ namespace UTJ
         {
             private float startTime;
             private float executeTime;
+            private float endTime;
             public void Start()
             {
                 this.startTime = Time.realtimeSinceStartup;
@@ -24,7 +25,8 @@ namespace UTJ
             public void End()
             {
                 // for physics.Update
-                executeTime += Time.realtimeSinceStartup - this.startTime;
+                endTime = Time.realtimeSinceStartup;
+                executeTime += this.endTime - this.startTime;
             }
             public void Reset()
             {
@@ -37,6 +39,10 @@ namespace UTJ
             public float GetStartTime()
             {
                 return startTime;
+            }
+            public float GetEndTime()
+            {
+                return endTime;
             }
         }
 
@@ -88,7 +94,7 @@ namespace UTJ
         }
 
         // For Android MultiThreadedRendering
-        public static void PreCulling()
+        public static void OnPreCulling()
         {
             if (firstPreCullingPoint == 0.0f)
             {
@@ -190,7 +196,9 @@ namespace UTJ
 
         private static void LoopLastPoint()
         {
-            float endTime = Time.realtimeSinceStartup;
+            var finishRenderProfiling = profilingSubSystem[typeof(PostLateUpdate.FinishFrameRendering)];
+            // get finish render profiling time to exclude profiler execute time .
+            float endTime = finishRenderProfiling.GetEndTime();
             foreach (var kv in profilingSubSystem)
             {
                 prevSubSystemExecuteTime[kv.Key] = kv.Value.GetExecuteTime();
@@ -200,7 +208,7 @@ namespace UTJ
 
             if (firstPreCullingPoint != 0.0f)
             {
-                float finishRenderingStart = profilingSubSystem[typeof(PostLateUpdate.FinishFrameRendering)].GetStartTime();
+                float finishRenderingStart = finishRenderProfiling.GetStartTime();
                 gfxWaitForPresentExecOnFinishRendering = firstPreCullingPoint - finishRenderingStart;
             }
             else
