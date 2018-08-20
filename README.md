@@ -1,2 +1,26 @@
-# MainLoopProfilingSample
-Read this in other languages: English, [“ú–{Œê](README.ja.md)<br />
+ï»¿# MainLoopProfilingSample
+Read this in other languages: English, [æ—¥æœ¬èªž](README.ja.md)<br />
+
+## About
+<img src="doc/img/Screenshot.jpg" />
+
+Simple runtime profiling tool using "PlayerLoop(Unity 2018.1)".< br/ >
+You can see execute time by category at runtime (left top of the screen).
+
+## Meter
+<img src="doc/img/explain.jpg" />
+
+<pre>
+1. MainThread execute time meter.
+ blueï¼šScript
+ orangeï¼šPhysics
+ redï¼šAnimator
+ greenï¼šRender
+ purpleï¼šOther
+
+2.RenderThread execute time meter.
+
+3.Latest 1 sec framerate information.
+4.Latest 1 sec minimum/maximum execute time for 1 frame.
+
+</pre>
