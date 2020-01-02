@@ -57,8 +57,7 @@ namespace UTJ
         private static float firstPreCullingPoint = 0.0f;
 
 
-        [RuntimeInitializeOnLoadMethod]
-        static void Init()
+        public static void Init()
         {
             System.Type[] profilePoints = {
                 // script
@@ -80,6 +79,7 @@ namespace UTJ
             };
 
             var playerLoop = PlayerLoop.GetDefaultPlayerLoop();
+
             AppendProfilingLoopSystem(ref playerLoop, profilePoints);
             PlayerLoop.SetPlayerLoop(playerLoop);
         }

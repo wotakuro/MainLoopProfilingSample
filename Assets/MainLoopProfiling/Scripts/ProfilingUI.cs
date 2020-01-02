@@ -33,6 +33,13 @@ namespace UTJ
         private int sumCount = 0;
         private int currentStartSec = 0;
 
+        private void Awake()
+        {
+            if (Application.isPlaying)
+            {
+                CustomPlayerLoop.Init();
+            }
+        }
 
         private void Start()
         {
