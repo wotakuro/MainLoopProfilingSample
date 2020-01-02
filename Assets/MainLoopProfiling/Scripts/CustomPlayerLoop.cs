@@ -78,7 +78,11 @@ namespace UTJ
                 typeof( FixedUpdate.PhysicsFixedUpdate),
             };
 
+#if UNITY_2019_3_OR_NEWER
+            var playerLoop = PlayerLoop.GetCurrentPlayerLoop();
+#else
             var playerLoop = PlayerLoop.GetDefaultPlayerLoop();
+#endif
 
             AppendProfilingLoopSystem(ref playerLoop, profilePoints);
             PlayerLoop.SetPlayerLoop(playerLoop);
